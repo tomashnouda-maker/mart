@@ -5,190 +5,297 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>القمة فى العلوم مع أ/مارتينا حنا | تطوير توماس شنودة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #f0f4f8;
-            background-image: radial-gradient(#d1d5db 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
+            background-color: #f3f7fa;
+            /* خلفية إبداعية بتموجات هادئة وشبكة هندسية ناعمة جداً */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.06) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(168, 85, 247, 0.04) 0px, transparent 50%),
+                radial-gradient(#e2e8f0 0.8px, transparent 0.8px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+            background-attachment: fixed;
+            color: #1e293b;
         }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        #dev-modal.active { display: flex !important; animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        @keyframes modalIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* كرت الزجاج فائق النقاء والنظافة البصرية */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.01),
+                0 20px 40px -15px rgba(148, 163, 184, 0.12);
+        }
+
+        /* تأثير التوهج المضيء حول كرت البحث */
+        .search-container-glow {
+            position: relative;
+        }
+        .search-container-glow::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6, #0ea5e9);
+            border-radius: 2.7rem;
+            z-index: -1;
+            opacity: 0.15;
+            filter: blur(8px);
+            transition: opacity 0.3s ease;
+        }
+        .search-container-glow:focus-within::after {
+            opacity: 0.35;
+            filter: blur(12px);
+        }
+
+        /* حركة الفيد إن الإنسيابية جداً */
+        .fade-in-up { 
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(24px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        /* تأثير ظهور نافذة المبرمج */
+        #dev-modal.active { display: flex !important; animation: modalReveal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes modalReveal { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        /* سكرول بار احترافي رفيع ومخفي جزئياً */
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(241, 245, 249, 0.3); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* تأثير الارتفاع ثلاثي الأبعاد والظلال الناعمة لبطاقات السجلات */
+        .card-interactive { 
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        .card-interactive:hover { 
+            transform: translateY(-4px) scale(1.01); 
+            box-shadow: 0 15px 30px -10px rgba(148, 163, 184, 0.25);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        /* تدرج الألوان المتألق للنصوص */
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* تدرج الألوان المبهج للأزرار */
+        .bg-gradient-interactive {
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #0ea5e9 100%);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .bg-gradient-interactive:hover {
+            background-position: right center;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col p-4 md:p-8">
+<body class="min-h-screen flex flex-col p-4 md:p-8 overflow-x-hidden">
+
+    <!-- حاوية الإشعارات الاحترافية الرقيقة جداً (Toasts) -->
+    <div id="toast-container" class="fixed top-6 left-1/2 transform -translate-x-1/2 z-[200] flex flex-col gap-3 pointer-events-none w-full max-w-sm px-4"></div>
 
     <div class="max-w-5xl mx-auto w-full flex-1">
-        <!-- قسم البحث والترحيب -->
-        <div class="glass-card p-8 md:p-14 rounded-[3.5rem] shadow-2xl border-t-[12px] border-blue-600 mb-10 text-center fade-in">
-            <div class="w-24 h-24 bg-blue-600 text-white rounded-3xl flex items-center justify-center text-4xl mx-auto mb-8 shadow-lg rotate-3">
+        
+        <!-- قسم البحث والترحيب الرئيسي -->
+        <div class="glass-premium p-8 md:p-14 rounded-[3.5rem] mb-10 text-center fade-in-up relative overflow-hidden">
+            <!-- لمسة فنية ضوئية ناعمة خلف الشعار -->
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-cyan-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+            
+            <!-- أيقونة التخرج بتدرج أنيق -->
+            <div class="relative w-24 h-24 bg-gradient-interactive text-white rounded-[2.2rem] flex items-center justify-center text-4xl mx-auto mb-8 shadow-[0_12px_30px_-5px_rgba(79,70,229,0.25)] hover:rotate-6 transition-transform duration-300">
                 <i class="fas fa-graduation-cap"></i>
             </div>
-            <h1 class="text-3xl md:text-5xl font-black text-slate-800 mb-4 tracking-tight">بوابة المتابعة الإلكترونية</h1>
-            <p class="text-slate-400 mb-12 font-bold text-lg">منصة متطورة لمتابعة الأداء الأكاديمي والتحصيل الدراسي</p>
             
-            <div class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto bg-slate-50 p-3 rounded-[2.5rem] shadow-inner">
-                <input type="text" id="parent-code" placeholder="أدخل كود الطالب هنا..." 
-                    class="flex-1 p-5 rounded-[2rem] border-none text-center text-3xl font-black uppercase outline-none focus:ring-0 bg-transparent text-slate-700">
-                <button onclick="getStudentHistory()" class="bg-blue-600 text-white px-14 py-5 rounded-[2rem] font-black text-xl hover:bg-blue-700 shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3">
-                    <span>دخول</span>
-                    <i class="fas fa-arrow-left"></i>
-                </button>
+            <h1 class="text-3xl md:text-5xl font-black text-slate-800 mb-4 tracking-tight leading-none">بوابة المتابعة الإلكترونية</h1>
+            <p class="text-slate-500 mb-12 font-semibold text-base md:text-xl">منصة متطورة لمتابعة الأداء الأكاديمي والتحصيل الدراسي</p>
+            
+            <!-- كبسولة البحث المضيئة والمطورة -->
+            <div class="search-container-glow max-w-2xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-4 bg-white/90 p-3 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-slate-200/60 focus-within:border-indigo-400 focus-within:ring-4 focus-within:ring-indigo-50 transition-all">
+                    <div class="relative flex-1 flex items-center">
+                        <i class="fas fa-fingerprint text-indigo-400/70 mr-5 absolute pointer-events-none text-2xl"></i>
+                        <input type="text" id="parent-code" placeholder="أدخل اسم الطالب أو الكود الخاص به..." 
+                            class="w-full p-4 pr-14 pl-4 rounded-[2rem] border-none text-right text-lg md:text-2xl font-bold outline-none focus:ring-0 bg-transparent text-slate-700 placeholder:text-slate-400/80">
+                    </div>
+                    <button id="search-btn" onclick="getStudentHistory()" class="bg-gradient-interactive text-white px-12 py-5 rounded-[2rem] font-extrabold text-xl hover:shadow-[0_10px_25px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all flex items-center justify-center gap-3 cursor-pointer">
+                        <span id="btn-text">استعلام</span>
+                        <i id="btn-icon" class="fas fa-search text-lg"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- صندوق عرض النتائج -->
-        <div id="result-box" class="hidden fade-in space-y-8 pb-20">
-            <!-- كارت الملف الشخصي للطالب -->
-            <div class="glass-card p-10 rounded-[3.5rem] shadow-xl text-center border border-white relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-10 opacity-5 text-98xl -rotate-12">
+        <!-- صندوق عرض النتائج والتقارير الأكاديمية -->
+        <div id="result-box" class="hidden fade-in-up space-y-8 pb-20">
+            
+            <!-- كارت الملف الشخصي الفاخر للطالب (بشكل هوية ذكية مذهلة) -->
+            <div class="glass-premium p-8 md:p-12 rounded-[3.5rem] text-center relative overflow-hidden">
+                <!-- أيقونة مائية فخمة في الخلفية -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[15rem] pointer-events-none">
                     <i class="fas fa-user-graduate"></i>
                 </div>
-                <h2 id="disp-name" class="text-4xl md:text-5xl font-black text-slate-800 mb-8 relative z-10"></h2>
+                
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-indigo-50/80 text-indigo-600 rounded-full mb-6 border border-indigo-100/50 shadow-inner">
+                    <i class="fas fa-user-check text-3xl"></i>
+                </div>
+                <h2 id="disp-name" class="text-3xl md:text-5xl font-black text-gradient-primary mb-8 relative z-10 leading-tight"></h2>
+                
                 <div class="flex flex-wrap justify-center gap-4 relative z-10">
-                    <div class="bg-green-500 text-white px-10 py-4 rounded-2xl text-lg font-black shadow-lg" id="disp-last-att"></div>
-                    <div class="bg-orange-500 text-white px-10 py-4 rounded-2xl text-lg font-black shadow-lg" id="disp-last-grade"></div>
+                    <div class="flex items-center gap-3 bg-emerald-50 text-emerald-700 border border-emerald-200/60 px-8 py-4 rounded-2xl text-lg font-black shadow-[0_4px_15px_-3px_rgba(16,185,129,0.1)]" id="disp-last-att"></div>
+                    <div class="flex items-center gap-3 bg-blue-50 text-blue-700 border border-blue-200/60 px-8 py-4 rounded-2xl text-lg font-black shadow-[0_4px_15px_-3px_rgba(59,130,246,0.1)]" id="disp-last-grade"></div>
                 </div>
             </div>
 
-            <!-- شبكة البيانات (الحضور والدرجات) -->
+            <!-- شبكة السجلات الذكية -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- سجل الحضور -->
-                <div class="glass-card p-8 rounded-[3rem] shadow-lg border border-white">
-                    <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-black text-slate-700 flex items-center gap-3">
-                            <i class="fas fa-calendar-check text-green-500 text-3xl"></i> سجل الحضور
+                
+                <!-- سجل الحضور التفاعلي -->
+                <div class="glass-premium p-6 md:p-8 rounded-[3rem]">
+                    <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                        <h3 class="text-xl md:text-2xl font-black text-slate-800 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg border border-emerald-100/40">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            سجل الحضور
                         </h3>
-                        <span class="bg-slate-100 text-slate-400 text-xs font-black px-4 py-1 rounded-full uppercase">Logs</span>
+                        <span class="bg-slate-100 text-slate-500 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Attendance Logs</span>
                     </div>
-                    <div id="att-history-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"></div>
+                    <div id="att-history-list" class="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar"></div>
                 </div>
 
-                <!-- سجل الاختبارات -->
-                <div class="glass-card p-8 rounded-[3rem] shadow-lg border border-white">
-                    <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-black text-slate-700 flex items-center gap-3">
-                            <i class="fas fa-award text-orange-500 text-3xl"></i> سجل الدرجات
+                <!-- سجل الدرجات والاختبارات التفاعلي -->
+                <div class="glass-premium p-6 md:p-8 rounded-[3rem]">
+                    <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                        <h3 class="text-xl md:text-2xl font-black text-slate-800 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg border border-amber-100/40">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            سجل الدرجات
                         </h3>
-                        <span class="bg-slate-100 text-slate-400 text-xs font-black px-4 py-1 rounded-full uppercase">Exams</span>
+                        <span class="bg-slate-100 text-slate-500 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Exam Grades</span>
                     </div>
-                    <div id="exam-history-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar"></div>
+                    <div id="exam-history-list" class="space-y-4 max-h-[450px] overflow-y-auto pr-2 custom-scrollbar"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- تذييل الصفحة (أزرار التواصل) -->
+    <!-- تذييل الصفحة (أزرار التواصل بتأثيرات حركية فائقة الجمال) -->
     <footer class="max-w-5xl mx-auto w-full mt-10 space-y-6 pb-12">
         
         <!-- قسم تواصل أ/مارتينا حنا (ثابت) -->
-        <div class="glass-card p-10 rounded-[3.5rem] shadow-2xl border border-white">
-            <h4 class="text-center text-slate-400 font-black mb-10 text-sm uppercase tracking-[0.3em]">مركز التواصل مع المعلم</h4>
-            <div class="flex justify-center items-center gap-8 md:gap-16">
+        <div class="glass-premium p-10 rounded-[3.5rem]">
+            <h4 class="text-center text-slate-400 font-extrabold mb-10 text-xs uppercase tracking-[0.3em]">مركز التواصل مع المعلم</h4>
+            <div class="flex justify-center items-center gap-6 md:gap-16">
                 <!-- فيسبوك المدرس -->
-                <a href="https://www.facebook.com/share/g/1D3XvMNyez/" target="_blank" class="flex flex-col items-center gap-4 group">
-                    <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-3xl flex items-center justify-center text-4xl group-hover:bg-blue-600 group-hover:text-white group-hover:-translate-y-2 shadow-sm transition-all duration-300">
-                        <i class="fab fa-facebook-f"></i>
+                <a href="https://www.facebook.com/share/g/1D3XvMNyez/" target="_blank" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-blue-50 text-blue-600 rounded-[1.8rem] flex items-center justify-center text-3xl group-hover:bg-blue-600 group-hover:text-white group-hover:-translate-y-2 shadow-[0_5px_15px_-3px_rgba(59,130,246,0.1)] group-hover:shadow-[0_12px_25px_-5px_rgba(59,130,246,0.25)] border border-blue-100/50 transition-all duration-300">
+                        <i class="fab fa-facebook-f text-2xl md:text-3xl"></i>
                     </div>
-                    <span class="text-xs font-black text-slate-600">فيسبوك</span>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-blue-600 transition-colors">فيسبوك</span>
                 </a>
                 <!-- واتساب المدرس -->
-                <a href="https://wa.me/+20 12 00636070" target="_blank" class="flex flex-col items-center gap-4 group">
-                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-3xl flex items-center justify-center text-4xl group-hover:bg-green-600 group-hover:text-white group-hover:-translate-y-2 shadow-sm transition-all duration-300">
-                        <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/+201200636070" target="_blank" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-emerald-50 text-emerald-600 rounded-[1.8rem] flex items-center justify-center text-3xl group-hover:bg-emerald-600 group-hover:text-white group-hover:-translate-y-2 shadow-[0_5px_15px_-3px_rgba(16,185,129,0.1)] group-hover:shadow-[0_12px_25px_-5px_rgba(16,185,129,0.25)] border border-emerald-100/50 transition-all duration-300">
+                        <i class="fab fa-whatsapp text-2xl md:text-3xl"></i>
                     </div>
-                    <span class="text-xs font-black text-slate-600">واتساب</span>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-emerald-600 transition-colors">واتساب</span>
                 </a>
                 <!-- اتصال المدرس -->
-                <a href="tel:+20 12 00636070" class="flex flex-col items-center gap-4 group">
-                    <div class="w-20 h-20 bg-slate-100 text-slate-600 rounded-3xl flex items-center justify-center text-4xl group-hover:bg-slate-900 group-hover:text-white group-hover:-translate-y-2 shadow-sm transition-all duration-300">
-                        <i class="fas fa-phone-alt"></i>
+                <a href="tel:+201200636070" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-100 text-slate-600 rounded-[1.8rem] flex items-center justify-center text-3xl group-hover:bg-slate-800 group-hover:text-white group-hover:-translate-y-2 shadow-[0_5px_15px_-3px_rgba(100,116,139,0.1)] group-hover:shadow-[0_12px_25px_-5px_rgba(100,116,139,0.25)] border border-slate-200/50 transition-all duration-300">
+                        <i class="fas fa-phone-alt text-2xl"></i>
                     </div>
-                    <span class="text-xs font-black text-slate-600">اتصال</span>
+                    <span class="text-xs font-bold text-slate-500 group-hover:text-slate-800 transition-colors">اتصال</span>
                 </a>
             </div>
         </div>
 
-        <!-- زر المبرمج توماس شنودة -->
-        <button onclick="toggleDevModal()" class="w-full bg-slate-900 text-white p-7 rounded-[2.5rem] shadow-2xl flex items-center justify-between px-12 hover:bg-black transition-all group border border-slate-800">
+        <!-- زر المبرمج توماس شنودة الفاخر جداً مع إضاءة نيون خفيفة -->
+        <button onclick="toggleDevModal()" class="w-full bg-slate-900 text-white p-6 md:p-7 rounded-[2.5rem] shadow-[0_15px_30px_-5px_rgba(15,23,42,0.15)] flex items-center justify-between px-8 md:px-12 hover:bg-black hover:shadow-[0_20px_40px_-5px_rgba(15,23,42,0.3)] hover:-translate-y-1 transition-all group border border-slate-800 cursor-pointer">
             <div class="flex items-center gap-5 text-right">
-                <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg group-hover:rotate-12 transition-transform">
-                    <i class="fas fa-terminal"></i>
+                <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-interactive rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-lg group-hover:rotate-12 transition-transform">
+                    <i class="fas fa-code"></i>
                 </div>
                 <div>
-                    <p class="text-[10px] text-blue-400 font-black uppercase tracking-[0.2em] mb-1">Developed By</p>
-                    <p class="text-2xl font-black">تواصل مع المبرمج</p>
+                    <p class="text-[9px] md:text-[10px] text-blue-400 font-bold uppercase tracking-[0.2.5em] mb-1">Developed By</p>
+                    <p class="text-xl md:text-2xl font-black">تواصل مع المبرمج</p>
                 </div>
             </div>
-            <i class="fas fa-chevron-left text-slate-700 group-hover:text-blue-500 group-hover:-translate-x-2 transition-all"></i>
+            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-slate-700 transition-colors">
+                <i class="fas fa-chevron-left text-slate-300 group-hover:text-white transition-all"></i>
+            </div>
         </button>
     </footer>
 
-    <!-- نافذة المبرمج توماس شنودة (مودال) -->
-    <div id="dev-modal" class="fixed inset-0 bg-slate-900/95 z-[100] flex items-center justify-center p-6 hidden">
-        <div class="bg-white w-full max-w-md rounded-[4rem] overflow-hidden shadow-2xl relative border border-white/20">
+    <!-- نافذة المبرمج توماس شنودة (مودال احترافي بتصميم بطاقة مبرمج عالمي) -->
+    <div id="dev-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[100] flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-md rounded-[3.5rem] overflow-hidden shadow-2xl relative border border-white/25">
             
-            <!-- خلفية الهيدر -->
-            <div class="bg-gradient-to-br from-slate-900 to-blue-900 py-16 text-center">
-                <div class="w-24 h-24 bg-blue-600/20 text-blue-400 border-2 border-blue-500/30 rounded-[2rem] flex items-center justify-center text-5xl mx-auto mb-6">
+            <!-- خلفية الهيدر الفخمة للمبرمج -->
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-950 py-14 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.04\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E')] opacity-70"></div>
+                <div class="relative w-24 h-24 bg-white/10 text-white border border-white/20 rounded-[2rem] flex items-center justify-center text-5xl mx-auto mb-5 backdrop-blur-sm shadow-inner">
                     <i class="fas fa-laptop-code"></i>
                 </div>
-                <h3 class="text-3xl font-black text-white mb-2">توماس شنودة فرح</h3>
-                <p class="text-blue-400 font-bold tracking-widest text-sm uppercase">Software & Systems Developer</p>
+                <h3 class="text-3xl font-black text-white mb-2 relative z-10">توماس شنودة فرح</h3>
+                <p class="text-indigo-300 font-bold tracking-widest text-xs uppercase relative z-10">Software & Systems Developer</p>
             </div>
 
-            <!-- محتوى التواصل الخاص بالمبرمج -->
-            <div class="px-10 py-12 text-center">
-                <p class="text-slate-500 font-bold text-md mb-12 leading-relaxed">يسعدني تواصلكم لطلب الدعم الفني أو لتنفيذ وبرمجة مشاريعكم الخاصة بأحدث التقنيات العالمية.</p>
-
-                <div class="grid grid-cols-3 gap-6">
+            <!-- معلومات التواصل المخصصة للمبرمج -->
+            <div class="px-8 py-10 text-center bg-white">
+                <p class="text-slate-500 font-semibold text-sm mb-10 leading-relaxed">يسعدني تواصلكم لطلب الدعم الفني أو لتنفيذ وبرمجة مشاريعكم الخاصة بأحدث التقنيات البرمجية العالمية.</p>
+                
+                <div class="grid grid-cols-3 gap-4">
                     <!-- واتساب المبرمج -->
                     <a href="https://wa.me/+201288769853" target="_blank" class="flex flex-col items-center gap-3 group">
-                        <div class="w-20 h-20 bg-green-50 text-green-600 rounded-[2rem] flex items-center justify-center text-4xl group-hover:bg-green-600 group-hover:text-white transition-all shadow-sm">
+                        <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-[1.5rem] flex items-center justify-center text-3xl group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm border border-emerald-100/50">
                             <i class="fab fa-whatsapp"></i>
                         </div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase">واتساب</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase group-hover:text-emerald-600 transition-colors">واتساب</span>
                     </a>
                     <!-- فيسبوك المبرمج -->
                     <a href="https://www.facebook.com/share/1GuYodmpLj/" target="_blank" class="flex flex-col items-center gap-3 group">
-                        <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-[2rem] flex items-center justify-center text-4xl group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-[1.5rem] flex items-center justify-center text-3xl group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm border border-blue-100/50">
                             <i class="fab fa-facebook-f"></i>
                         </div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase">فيسبوك</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase group-hover:text-blue-600 transition-colors">فيسبوك</span>
                     </a>
                     <!-- هاتف المبرمج -->
                     <a href="tel:+201288769853" class="flex flex-col items-center gap-3 group">
-                        <div class="w-20 h-20 bg-slate-100 text-slate-600 rounded-[2rem] flex items-center justify-center text-4xl group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
-                            <i class="fas fa-phone-alt"></i>
+                        <div class="w-16 h-16 bg-slate-50 text-slate-700 rounded-[1.5rem] flex items-center justify-center text-3xl group-hover:bg-slate-800 group-hover:text-white transition-all shadow-sm border border-slate-200">
+                            <i class="fas fa-phone-alt text-2xl"></i>
                         </div>
-                        <span class="text-[10px] font-black text-slate-400 uppercase">اتصال</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase group-hover:text-slate-800 transition-colors">اتصال</span>
                     </a>
                 </div>
-
-                <button onclick="toggleDevModal()" class="mt-14 w-full py-5 bg-slate-50 text-slate-400 font-black rounded-3xl hover:bg-red-50 hover:text-red-500 transition-all border border-transparent hover:border-red-100">
+                
+                <!-- زر إغلاق نافذة المبرمج -->
+                <button onclick="toggleDevModal()" class="mt-10 w-full py-4 bg-slate-50 text-slate-500 font-extrabold rounded-2xl hover:bg-rose-50 hover:text-rose-600 transition-all border border-transparent hover:border-rose-100 cursor-pointer">
                     إغلاق النافذة
                 </button>
             </div>
             
-            <div class="bg-slate-900 p-5 text-center">
-                <p class="text-[10px] text-slate-500 font-black tracking-[0.3em]">POWERED BY THOMAS SHNOUDA © 2026</p>
+            <div class="bg-slate-50 p-4 text-center border-t border-slate-100">
+                <p class="text-[9px] text-slate-400 font-extrabold tracking-[0.3em]">POWERED BY THOMAS SHNOUDA © 2026</p>
             </div>
         </div>
     </div>
 
     <script>
-        // رابط قاعدة بيانات Firebase الخاصة بك
+        // رابط قاعدة بيانات Firebase الخاصة بك (الخاص بنظامك الفعلي ليبقى العمل مستقراً تماماً)
         const DB_URL = "https://tomas-f73e9-default-rtdb.europe-west1.firebasedatabase.app/";
 
         // وظيفة فتح وإغلاق نافذة المبرمج
@@ -198,88 +305,173 @@
             modal.classList.toggle('active');
         }
 
-        // الوظيفة الرئيسية لجلب بيانات الطالب
+        // نظام التنبيهات المنبثقة المخصص (Toasts) الراقي جداً والبديل عن الـ alert() التقليدي
+        function showToast(message, type = 'error') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const isError = type === 'error';
+            const borderColor = isError ? 'border-rose-500 shadow-rose-500/10' : 'border-emerald-500 shadow-emerald-500/10';
+            const iconColor = isError ? 'text-rose-500' : 'text-emerald-500';
+            const iconClass = isError ? 'fa-circle-exclamation' : 'fa-circle-check';
+
+            toast.className = `flex items-center gap-4 p-5 rounded-3xl shadow-xl border-b-4 ${borderColor} bg-white/95 backdrop-blur-md transition-all duration-300 transform -translate-y-5 opacity-0 pointer-events-auto w-full`;
+            toast.innerHTML = `
+                <div class="text-3xl ${iconColor}"><i class="fas ${iconClass}"></i></div>
+                <div class="font-bold text-slate-700 text-sm md:text-base leading-tight">${message}</div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // تأثيرات الحركة والانفتاح
+            setTimeout(() => { toast.classList.remove('-translate-y-5', 'opacity-0'); }, 10);
+            
+            // تلاشي الإشعار وحذفه تلقائياً
+            setTimeout(() => {
+                toast.classList.add('-translate-y-5', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // دالة تسوية وتطهير النصوص العربية والإنجليزية لإلغاء أي فروق في الكتابة والهمزات
+        function normalizeText(text) {
+            if (!text) return "";
+            return text.toString().trim().toLowerCase()
+                .replace(/[أإآا]/g, 'ا')
+                .replace(/ة/g, 'ه')
+                .replace(/[ىي]/g, 'ي')
+                .replace(/\s+/g, ' ');
+        }
+
+        // دالة جلب البيانات والتحقق (والتي تجمع بين منطق الكود الخاص بك وبحث الاسم والكود السوبر مرن)
         async function getStudentHistory() {
-            const code = document.getElementById('parent-code').value.trim().toUpperCase();
-            if(!code) return;
+            const searchInput = document.getElementById('parent-code').value.trim();
+            if(!searchInput) {
+                showToast("الرجاء إدخال اسم الطالب أو الكود الخاص به أولاً للبدء.", "error");
+                return;
+            }
+
+            // تفعيل حالة التحميل والانتقال على الزر
+            const btn = document.getElementById('search-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            
+            btn.classList.add('opacity-80', 'cursor-wait');
+            btnText.innerText = "جاري البحث...";
+            btnIcon.className = "fas fa-spinner fa-spin text-lg";
 
             try {
-                // جلب جميع الطلاب من قاعدة البيانات
+                // جلب قائمة الطلاب بالكامل من قاعدة البيانات
                 const allData = await fetch(`${DB_URL}students.json`).then(r => r.json());
                 let found = null, clsKey = "", stuKey = "";
 
                 if(allData) {
+                    const query = normalizeText(searchInput);
                     for (const [cls, students] of Object.entries(allData)) {
                         for (const [id, s] of Object.entries(students)) {
-                            if(s.code === code) { found = s; clsKey = cls; stuKey = id; break; }
+                            const studentCode = s.code ? s.code.toString().toLowerCase().trim() : "";
+                            const studentName = normalizeText(s.name);
+                            
+                            // البحث المزدوج الذكي: تطابق تام في الكود أو تطابق بالاسم (حتى ولو جزئي)
+                            if(studentCode === query || studentName.includes(query)) { 
+                                found = s; 
+                                clsKey = cls; 
+                                stuKey = id; 
+                                break; 
+                            }
                         }
                         if(found) break;
                     }
                 }
 
                 if(!found) { 
-                    alert("⚠️ الكود المدخل غير صحيح أو غير مسجل بالنظام."); 
+                    showToast("⚠️ لم يتم العثور على أي طالب يطابق هذا الاسم أو الكود في النظام.", "error"); 
                     return; 
                 }
 
-                // تحديث بيانات الكارت الشخصي للطالب
+                // تحديث بيانات بطاقة الهوية الذكية للطالب
                 document.getElementById('disp-name').innerText = found.name;
-                document.getElementById('disp-last-att').innerText = `حالة الحضور: ${found.lastStatus || 'غير محدد'}`;
-                document.getElementById('disp-last-grade').innerText = `آخر نتيجة: ${found.lastGrade || '--'}`;
+                document.getElementById('disp-last-att').innerHTML = `<i class="fas fa-eye text-emerald-500"></i> حالة الحضور: ${found.lastStatus || 'غير محدد'}`;
+                document.getElementById('disp-last-grade').innerHTML = `<i class="fas fa-chart-line text-blue-500"></i> آخر نتيجة: ${found.lastGrade || '--'}`;
 
-                // جلب سجل الحضور
+                // جلب سجل الحضور المحدث وعرضه في كروت تفاعلية عالمية
                 const attLogs = await fetch(`${DB_URL}logs/${clsKey}/${stuKey}.json`).then(r => r.json());
                 const attList = document.getElementById('att-history-list');
                 attList.innerHTML = "";
                 if(attLogs) {
                     Object.values(attLogs).reverse().forEach(log => {
+                        const isPresent = log.status === 'حاضر';
                         const div = document.createElement('div');
-                        div.className = `flex justify-between items-center p-5 rounded-2xl bg-white border-r-8 ${log.status === 'حاضر' ? 'border-green-500' : 'border-red-500'} shadow-sm border border-slate-100`;
+                        div.className = `flex justify-between items-center p-5 rounded-[1.8rem] bg-white border border-slate-100 card-interactive shadow-sm relative overflow-hidden`;
+                        const borderIndicator = `<div class="absolute right-0 top-0 bottom-0 w-2 ${isPresent ? 'bg-emerald-400' : 'bg-rose-400'}"></div>`;
+                        
                         div.innerHTML = `
-                            <span class="font-black text-slate-700 text-lg">${log.status}</span>
-                            <div class="text-right">
-                                <span class="text-[10px] text-slate-400 font-black block uppercase">${log.time}</span>
+                            ${borderIndicator}
+                            <span class="font-extrabold ${isPresent ? 'text-emerald-600' : 'text-rose-600'} text-lg flex items-center gap-2 pr-3">
+                                <i class="fas ${isPresent ? 'fa-circle-check' : 'fa-circle-xmark'}"></i> ${log.status}
+                            </span>
+                            <div class="text-right bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                                <span class="text-xs text-slate-500 font-bold block uppercase">${log.time}</span>
                             </div>
                         `;
                         attList.appendChild(div);
                     });
                 } else {
-                    attList.innerHTML = "<div class='text-center text-slate-300 py-10 font-bold'>لا توجد بيانات حضور مسجلة</div>";
+                    attList.innerHTML = "<div class='text-center text-slate-400 py-12 font-bold bg-slate-50/50 rounded-3xl border border-slate-100'><i class='fas fa-calendar-times text-4xl mb-3 block opacity-40'></i>لا توجد بيانات حضور مسجلة</div>";
                 }
 
-                // جلب سجل الاختبارات
+                // جلب سجل الاختبارات والدرجات وعرضه بطابع تفاعلي فخم للغاية
                 const examLogs = await fetch(`${DB_URL}exams/${clsKey}/${stuKey}.json`).then(r => r.json());
                 const examList = document.getElementById('exam-history-list');
                 examList.innerHTML = "";
                 if(examLogs) {
                     Object.values(examLogs).reverse().forEach(ex => {
                         const div = document.createElement('div');
-                        div.className = "p-5 bg-white rounded-2xl border-r-8 border-blue-600 flex justify-between items-center shadow-sm border border-slate-100";
+                        div.className = "p-5 bg-white rounded-[1.8rem] border border-slate-100 flex justify-between items-center card-interactive shadow-sm relative overflow-hidden";
+                        const borderIndicator = `<div class="absolute right-0 top-0 bottom-0 w-2 bg-blue-400"></div>`;
+                        
                         div.innerHTML = `
-                            <div>
-                                <span class="font-black text-slate-800 block text-xl mb-1">${ex.title}</span>
-                                <span class="text-[10px] text-slate-400 font-black uppercase tracking-wider">${ex.date}</span>
+                            ${borderIndicator}
+                            <div class="pr-3">
+                                <span class="font-black text-slate-800 block text-lg mb-1">${ex.title}</span>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5"><i class="far fa-clock"></i> ${ex.date}</span>
                             </div>
-                            <div class="text-right bg-blue-50 px-5 py-2 rounded-xl">
-                                <span class="font-black text-blue-600 text-2xl">${ex.score}</span>
-                                <span class="text-xs text-blue-300 font-bold">/ ${ex.total}</span>
+                            <div class="text-right bg-gradient-to-br from-blue-50 to-indigo-50 px-5 py-3 rounded-[1.2rem] border border-blue-100/50 shadow-inner">
+                                <span class="font-black text-blue-700 text-2xl">${ex.score}</span>
+                                <span class="text-xs text-blue-400 font-bold">/ ${ex.total}</span>
                             </div>
                         `;
                         examList.appendChild(div);
                     });
                 } else {
-                    examList.innerHTML = "<div class='text-center text-slate-300 py-10 font-bold'>لا توجد نتائج اختبارات متاحة</div>";
+                    examList.innerHTML = "<div class='text-center text-slate-400 py-12 font-bold bg-slate-50/50 rounded-3xl border border-slate-100'><i class='fas fa-file-excel text-4xl mb-3 block opacity-40'></i>لا توجد نتائج اختبارات متاحة</div>";
                 }
 
-                // إظهار النتائج
+                // إظهار صندوق النتائج بالكامل
                 document.getElementById('result-box').classList.remove('hidden');
-                window.scrollTo({ top: 450, behavior: 'smooth' });
+                
+                // التمرير الإنسيابي الرائع لمنطقة السجلات
+                setTimeout(() => { 
+                    document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                }, 100);
 
             } catch (e) { 
                 console.error(e);
-                alert("حدث خطأ تقني أثناء جلب البيانات. يرجى المحاولة لاحقاً."); 
+                showToast("عذراً، حدث خطأ في الاتصال بالخادم الرئيسي. يرجى مراجعة الشبكة والمحاولة مجدداً.", "error"); 
+            } finally {
+                // إعادة شكل زر الاستعلام إلى طبيعته بعد انتهاء العملية
+                btn.classList.remove('opacity-80', 'cursor-wait');
+                btnText.innerText = "استعلام";
+                btnIcon.className = "fas fa-search text-lg";
             }
         }
+
+        // دعم تفعيل البحث المباشر فور الضغط على زر Enter داخل حقل الكتابة
+        document.getElementById('parent-code').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                getStudentHistory();
+            }
+        });
     </script>
 </body>
-  </html>
+</html>
